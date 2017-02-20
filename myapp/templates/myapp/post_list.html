@@ -18,5 +18,15 @@
              <h2><a href="">Torneos</a></h2>
              <p>Segundo post para ver headings, y secciones.</p>
          </div>
+
+         <div>
+           {% for post in posts%}
+           <div>
+             <p>published: {{post.published_date}}</p>
+             <h1><a href=""> {{post.title}}</a></h1>
+             <p>{{ post.text|linebreaksbr }}</p>
+           </div>
+           {% endfor %}
+         </div>
   </body>
 </html>
