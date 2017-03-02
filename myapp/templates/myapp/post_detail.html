@@ -2,15 +2,24 @@
 
 {% block content %}
     <div class="post">
-        {% if post.published_date %}
-            <div class="date">
+
+        <h1> {{ post.title }}
+            {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+            {% if post.published_date %}
+              {% else %}
+              <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk%}">Publish</a>
+            {% endif %}
+            <a class="btn btn-defualt" href="{% url 'post_remove' pk=post.pk%}"><span class="glyphicon glyphicon-remove"></span></a>
+            <h3>
+            {% if post.published_date %}
+                <div class="date">
                 {{ post.published_date }}
-            </div>
-        {% endif %}
-        {% if user.is_authenticated %}
-         <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endif %}
+            </h3>
+       </h1>
+       <p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endblock %}
