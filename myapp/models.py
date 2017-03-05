@@ -21,3 +21,26 @@ class Post(models.Model):
     def __str__(self):
         """Return post title."""
         return self.title
+
+    def approved_comments(self):
+        """Method to filter approved comments."""
+        return self.comments.filter(approved_comment=True)
+
+
+class Comment(models.Model):
+    """Class describing a comment on  post."""
+
+    post = models.ForeignKey('myapp.Post', related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField()
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        """Method to authorize and save a comment."""
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        """Return comment."""
+        return self.text

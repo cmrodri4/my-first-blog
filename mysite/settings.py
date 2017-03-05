@@ -25,7 +25,7 @@ SECRET_KEY = '33sbt2sx@n(za#9d&io-%i!#ed9_nj*=y4nbuiydxvux!b%gr0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -119,4 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# When the login Page is accessed directly it will redirect
+# successful login to the top-level index (the homepage of our blog).
+
+LOGIN_REDIRECT_URL = '/'
